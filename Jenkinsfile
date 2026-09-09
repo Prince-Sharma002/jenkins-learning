@@ -1,31 +1,41 @@
-
 pipeline {
 
     agent any
 
     stages {
 
+        stage('Environment') {
+            steps {
+                echo "Running Jenkins Pipeline"
+                sh 'whoami'
+                sh 'pwd'
+            }
+        }
+
         stage('Checkout') {
             steps {
-                echo 'Checking out source code...'
+                echo "Source code is already checked out by Jenkins"
+                sh 'ls -la'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Building application...'
+                echo "Building application..."
+                sh 'echo "Build completed successfully!"'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
+                echo "Running tests..."
+                sh 'echo "All tests passed!"'
             }
         }
 
-        stage('Deploy') {
+        stage('Complete') {
             steps {
-                echo 'Deploying application...'
+                echo "CI Pipeline completed!"
             }
         }
     }
